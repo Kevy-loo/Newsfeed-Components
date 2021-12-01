@@ -88,7 +88,47 @@ const data = [
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
+function articleMaker(obj) {
+  const articleDiv = document.createElement('div');
+  const articleHead = document.createElement('h2');
+  const datePara = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const expandButton = document.createElement('span');
 
+  articleDiv.classList.add('article');
+  datePara.classList.add('date');
+  // para1.classList.add('date');
+  // para2.classList.add('date');
+  // para3.classList.add('date');
+  expandButton.classList.add('expandButton');
+  
+  articleDiv.appendChild(articleHead);
+  articleDiv.appendChild(datePara);
+  articleDiv.appendChild(para1);
+  articleDiv.appendChild(para2);
+  articleDiv.appendChild(para3);
+  articleDiv.appendChild(expandButton);
+
+  articleHead.textContent = obj.title;
+  datePara.textContent = obj.date;
+  para1.textContent = obj.firstParagraph;
+  para2.textContent = obj.secondParagraph;
+  para3.textContent = obj.thirdParagraph;
+  expandButton.textContent ='+';
+
+  expandButton.addEventListener('click', () => {
+    articleDiv.classList.toggle('article-open')
+  })
+  return articleDiv;
+
+
+}
+data.forEach(elem => {
+  document.querySelector('div.articles').appendChild(articleMaker(elem));
+
+})
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
